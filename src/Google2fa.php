@@ -49,7 +49,8 @@ class Google2fa extends Tool
             return response()->redirectTo(config('nova.path'));
         }
 
-        $google2fa = new G2fa;
+        /*
+		$google2fa = new G2fa;
 
         $google2fa_url = Url::generateGoogleQRCodeUrl(
             'https://chart.googleapis.com/',
@@ -57,6 +58,15 @@ class Google2fa extends Tool
             'chs=200x200&chld=M|0&cht=qr&chl=',
             $google2fa->getQRCodeUrl(config('app.name'), auth()->user()->email, auth()->user()->user2fa->google2fa_secret)
         );
+		*/
+
+		$google2fa = (new \PragmaRX\Google2FAQRCode\Google2FA());
+
+		$google2fa_url = $google2fa->getQRCodeInline(
+			config('app.name'),
+			auth()->user()->email,
+			auth()->user()->user2fa->google2fa_secret
+		);
 
         $data['google2fa_url'] = $google2fa_url;
         $data['error'] = 'Secret is invalid.';
@@ -70,7 +80,8 @@ class Google2fa extends Tool
      */
     public function register()
     {
-        $google2fa = new G2fa;
+        /*
+		$google2fa = new G2fa;
 
         $google2fa_url = Url::generateGoogleQRCodeUrl(
             'https://chart.googleapis.com/',
@@ -78,6 +89,15 @@ class Google2fa extends Tool
             'chs=200x200&chld=M|0&cht=qr&chl=',
             $google2fa->getQRCodeUrl(config('app.name'), auth()->user()->email, auth()->user()->user2fa->google2fa_secret)
         );
+		*/
+
+		$google2fa = (new \PragmaRX\Google2FAQRCode\Google2FA());
+
+		$google2fa_url = $google2fa->getQRCodeInline(
+			config('app.name'),
+			auth()->user()->email,
+			auth()->user()->user2fa->google2fa_secret
+		);
 
         $data['google2fa_url'] = $google2fa_url;
 
