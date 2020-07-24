@@ -9,7 +9,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('app.css', 'vendor/nova') }}">
-	<link rel="stylesheet" href="{{ mix('theme.css', 'vendor/nova') }}">
 
     <style>
         body {
