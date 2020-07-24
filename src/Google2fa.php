@@ -6,7 +6,6 @@ use Laravel\Nova\Tool;
 use PragmaRX\Google2FA\Google2FA as G2fa;
 use PragmaRX\Recovery\Recovery;
 use Request;
-use PragmaRX\Google2FA\Support\Url;
 
 class Google2fa extends Tool
 {
@@ -49,17 +48,6 @@ class Google2fa extends Tool
             return response()->redirectTo(config('nova.path'));
         }
 
-        /*
-		$google2fa = new G2fa;
-
-        $google2fa_url = Url::generateGoogleQRCodeUrl(
-            'https://chart.googleapis.com/',
-            'chart',
-            'chs=200x200&chld=M|0&cht=qr&chl=',
-            $google2fa->getQRCodeUrl(config('app.name'), auth()->user()->email, auth()->user()->user2fa->google2fa_secret)
-        );
-		*/
-
 		$google2fa = (new \PragmaRX\Google2FAQRCode\Google2FA());
 
 		$google2fa_url = $google2fa->getQRCodeInline(
@@ -80,17 +68,6 @@ class Google2fa extends Tool
      */
     public function register()
     {
-        /*
-		$google2fa = new G2fa;
-
-        $google2fa_url = Url::generateGoogleQRCodeUrl(
-            'https://chart.googleapis.com/',
-            'chart',
-            'chs=200x200&chld=M|0&cht=qr&chl=',
-            $google2fa->getQRCodeUrl(config('app.name'), auth()->user()->email, auth()->user()->user2fa->google2fa_secret)
-        );
-		*/
-
 		$google2fa = (new \PragmaRX\Google2FAQRCode\Google2FA());
 
 		$google2fa_url = $google2fa->getQRCodeInline(
