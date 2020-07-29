@@ -57,7 +57,7 @@ class Google2fa extends Tool
 		);
 
         $data['google2fa_url'] = $google2fa_url;
-        $data['error'] = 'Verification code is invalid.';
+        $data['error'] = 'Authentication code is incorrect or expired.';
 
         return view('google2fa::register', $data);
     }
@@ -100,7 +100,7 @@ class Google2fa extends Tool
     {
         if ($recover = Request::get('recover')) {
             if ($this->isRecoveryValid($recover, json_decode(auth()->user()->user2fa->recovery, true)) === false) {
-                $data['error'] = 'Backup code is invalid.';
+                $data['error'] = 'Backup code is incorrect.';
 
                 return view('google2fa::authenticate', $data);
             }
@@ -136,7 +136,7 @@ class Google2fa extends Tool
 
             return response()->redirectTo(config('nova.path'));
         }
-        $data['error'] = 'Verification code is invalid.';
+        $data['error'] = 'Authentication code is incorrect or expired.';
 
         return view('google2fa::authenticate', $data);
     }
